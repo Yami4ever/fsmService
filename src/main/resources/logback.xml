@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+
+	<property name="log.context.name" value="fsmService" />
+	<property name="log.charset" value="UTF-8" />
+	<property name="log.pattern" value="%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n" />
+	<property name="log.file" value="/data/logs/${log.context.name}/taskrunning.log" />
+
+	<contextName>${log.context.name}</contextName>
+
+	<!-- 控制台日志配置 -->
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder charset="${log.charset}">
+			<pattern>${log.pattern}</pattern>
+		</encoder>
+	</appender>
+
+	<!-- 文件日志配置  -->
+	<appender name="fileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${log.file}</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>/data/logs/${log.context.name}/taskrunning-%d{yyyy-MM-dd}.log</fileNamePattern>
+		</rollingPolicy>
+		<encoder charset="${log.charset}">
+			<pattern>${log.pattern}</pattern>
+		</encoder>
+		<append>true</append>
+		<prudent>false</prudent>
+	</appender>
+
+	<!-- 日志级别，由低到高：DEBUG < INFO < WARN < ERROR < FATAL -->
+	<!-- 启用文件日志 -->
+	<root level="INFO">
+		<appender-ref ref="fileAppender" />
+	</root>
+	
+	<!-- 启用控制台日志 -->
+	<root level="INFO"> 
+		<appender-ref ref="STDOUT" />
+	</root>
+	
+</configuration>
