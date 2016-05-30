@@ -13,7 +13,7 @@
 	<!-- This is my config for mysql -->
 	<named-config name="mysql">
 		<property name="driverClass">com.mysql.jdbc.Driver</property>
-		<property name="jdbcUrl">jdbc:mysql://172.30.8.246:3306/fsm</property>
+		<property name="jdbcUrl">jdbc:mysql://localhost:3306/fsm</property>
 		<property name="user">root</property>
 		<property name="password">root</property>
 		<property name="initialPoolSize">10</property>
